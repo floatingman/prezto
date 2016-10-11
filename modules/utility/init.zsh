@@ -56,8 +56,10 @@ alias mv="${aliases[mv]:-mv} -i"
 alias p='${(z)PAGER}'
 alias po='popd'
 alias pu='pushd'
-alias rm="${aliases[rm]:-rm} -i"
 alias type='type -a'
+alias ssht='sshuttle --dns -vr pig-monkey.com 0/0'
+alias t='task'
+alias bc='bc -ql'
 
 # ls
 if is-callable 'dircolors'; then
@@ -90,16 +92,15 @@ else
   fi
 fi
 
-alias l='ls -1A'         # Lists in one column, hidden files.
-alias ll='ls -lh'        # Lists human readable sizes.
-alias lr='ll -R'         # Lists human readable sizes, recursively.
-alias la='ll -A'         # Lists human readable sizes, hidden files.
-alias lm='la | "$PAGER"' # Lists human readable sizes, hidden files through pager.
-alias lx='ll -XB'        # Lists sorted by extension (GNU only).
-alias lk='ll -Sr'        # Lists sorted by size, largest last.
-alias lt='ll -tr'        # Lists sorted by date, most recent last.
-alias lc='lt -c'         # Lists sorted by date, most recent last, shows change time.
-alias lu='lt -u'         # Lists sorted by date, most recent last, shows access time.
+alias l='ls -lh'         # Lists human readable sizes.
+alias ll='l -A'          # Lists human readable sizes, hidden files.
+alias lr='l -R'          # Lists human readable sizes, recursively.
+alias lm='ll | "$PAGER"' # Lists human readable sizes, hidden files through pager.
+alias lx='l -XB'         # Lists sorted by extension (GNU only).
+alias lk='l -Sr'         # Lists sorted by size, largest last.
+alias lt='l -tr'         # Lists sorted by date, most recent last.
+alias lc='l -c'          # Lists sorted by date, most recent last, shows change time.
+alias lu='l -u'          # Lists sorted by date, most recent last, shows access time.
 alias sl='ls'            # I often screw this up.
 
 # Grep
@@ -158,7 +159,10 @@ fi
 # Miscellaneous
 
 # Serves a directory via HTTP.
-alias http-serve='python -m SimpleHTTPServer'
+alias http-serve='python -m http.server'
+
+# Update the pacman mirrorlist with reflector.
+alias update='sudo reflector -l 20 --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist'
 
 #
 # Functions

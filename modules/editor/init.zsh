@@ -240,6 +240,9 @@ fi
 # Vi Key Bindings
 #
 
+# Change to command-mode with kj.
+bindkey -M viins 'kj' vi-cmd-mode
+
 # Edit command in an external editor.
 bindkey -M vicmd "v" edit-command-line
 
@@ -250,9 +253,13 @@ bindkey -M vicmd "$key_info[Control]R" redo
 if (( $+widgets[history-incremental-pattern-search-backward] )); then
   bindkey -M vicmd "?" history-incremental-pattern-search-backward
   bindkey -M vicmd "/" history-incremental-pattern-search-forward
+  bindkey -M viins '^R' history-incremental-pattern-search-backward
+  bindkey -M viins '^S' history-incremental-pattern-search-forward
 else
   bindkey -M vicmd "?" history-incremental-search-backward
   bindkey -M vicmd "/" history-incremental-search-forward
+  bindkey -M viins '^R' history-incremental-search-backward
+  bindkey -M viins '^S' history-incremental-search-forward
 fi
 
 #
